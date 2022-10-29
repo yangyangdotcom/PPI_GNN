@@ -1,0 +1,57 @@
+{\rtf1\ansi\ansicpg936\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 .AppleSystemUIFontMonospaced-Regular;}
+{\colortbl;\red255\green255\blue255;\red27\green31\blue35;\red244\green246\blue249;\red109\green51\blue215;
+\red10\green58\blue158;}
+{\*\expandedcolortbl;;\cssrgb\c14118\c16078\c18431;\cssrgb\c96471\c97255\c98039;\cssrgb\c50980\c31373\c87451;
+\cssrgb\c1961\c31373\c68235;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Protein-to-graphs\
+-To install biographs\
+	1. Install the latest biopython and networkx through anaconda\
+	2. Pip install biographs\
+\
+Since the dataset provided didn\'92t work, I get my own dataset from Dr. Xu and use it on the preprocessing code given \
+\
+Got all the pdb I need\
+-try to use it on proteins-to-graph and seqvec\
+-able to use it on proteins-to-graph, but some pub file will be missed\
+-seqvec bio_embedding install error\
+\
+-3AIH has mismatched dimension (3103x20) can\'92t multiplied by (1024x1024)\
+-If remove 3AIH, data loader which take in 4 in a batch will only have 3 \
+\
+- virtual environment that has bio_embeddings can run the seqvec.py that I reproduce\
+- however, once I got bio_embeddings installed, none of the python file will work on the original folder (segfault)\
+\
+Downloaded a \'93dataset\'94 from the article, not sure what it is\
+\
+- Seems like the data should have the attribute:\
+	
+\f1\fs23\fsmilli11900 \cf2 \cb3 \expnd0\expndtw0\kerning0
+data.edge_index.\cf4 max\cf2 () \cf5 <\cf2  data.num_nodes
+\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+In this case, proteins like 3AIH will need to be eliminated, so we can only resolve this problem by deleting entries that has 3AIH from the spy file\
+-Create a new npy file that do not have bad data\
+-Then send them in batch or one by one\
+\
+**It combines 4 protein in a batch and make them into 1 tensor, therefore proteins like 3AIH would still get through.\
+**Not sure how 3AIH with 667 residue being reduce to 221 (now I know)\
+\
+Ask Dr. Wu if bunch of PRO in 3AIH represent 1 amino acid?\
+\
+I got the code to run!!\
+-remove bad data from Tom(numpy) using update_Tom_file\
+-The data should have the attribute ({\field{\*\fldinst{HYPERLINK "https://github.com/pyg-team/pytorch_geometric/issues/4588"}}{\fldrslt https://github.com/pyg-team/pytorch_geometric/issues/4588}}):\
+	
+\f1\fs23\fsmilli11900 \cf2 \cb3 \expnd0\expndtw0\kerning0
+data.edge_index.\cf4 max\cf2 () \cf5 <\cf2  data.num_nodes\
+
+\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 -Other wise I will get out of bound error\
+\
+\
+Seqvec working!!\
+-download bio-embeddings first\
+-then use other \
+}
